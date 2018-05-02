@@ -1,0 +1,10 @@
+<h2>Products</h2>  
+<ul class="products">  
+  <li *ngFor="let product of products"  
+   [class.selected]="product === selectedProduct"  
+   (click)="onSelect(product)">  
+    <span class="badge">{{product.id}}</span> {{product.name}}  
+  </li>  
+</ul>  
+<!—这是显示product具体信息的一个component，其中的[product]表示其有一个@input的属性，是依赖于products component来绑定的-->  
+<app-product-detail [product]="selectedProduct"></app-product-detail>  
