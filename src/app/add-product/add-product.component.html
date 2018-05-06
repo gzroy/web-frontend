@@ -1,0 +1,15 @@
+<div>  
+  <h2>Create Product</h2>  
+  <div>  
+    <label>name:  
+      <input #name />  
+    </label>  
+  </div>  
+  <div>  
+    <label>description:  
+      <input #description />  
+    </label>  
+  </div>  
+  <button (click)="create(name.value, description.value); name.value=''; description.value=''">create</button>
+  <button (click)="goBack()">go back</button>
+</div> 
