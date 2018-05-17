@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';  
 import { Observable } from 'rxjs/Observable';  
 import { HttpClient, HttpHeaders } from '@angular/common/http';  
-import { Product } from './product';  
+import { Product } from './product'; 
+import { KeycloakService } from './keycloak.service';  
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
-  
+  headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': ''})
+  };
+ 
 @Injectable()  
 export class ProductService {  
   private productsUrl ='http://localhost:9090/all';  //这是REST API的URL  
@@ -16,9 +17,15 @@ export class ProductService {
   private productDeleteUrl ='http://localhost:9090/deleteproduct';
   
   constructor(private http:HttpClient) { }  
-  
+
   getProducts(): Observable<Product[]> {  
-    return this.http.get<Product[]>(this.productsUrl)  
+	KeycloakService.getToken().then(httpOptions.headers = httpOptions.headers.set('Authorization', 'Bearer '+ KeycloakService.auth.authz.token));
+	//const token = await KeycloakService.getToken();
+	//httpOptions.headers = httpOptions.headers.set('Authorization', 'Bearer ' + token);
+	//KeycloakService.getToken().then(()=>{this.token=KeycloakService.auth.authz.token}).catch(v=>{console.log(v)});
+    //httpOptions.headers = httpOptions.headers.set('Authorization', 'Bearer '+);
+	//console.log(httpOptions.headers);
+    return this.http.get<Product[]>(this.productsUrl, httpOptions);
   }  
 
   /** GET hero by id. Will 404 if id not found */

@@ -1,5 +1,10 @@
 <nav>
   <a routerLink="/products">Explore Products</a>
-  <a routerLink="/createproduct">Create Product</a>
+  <div *ngIf="isManager()">
+    <a routerLink="/createproduct">Create Product</a>
+  </div>
+  <div *ngIf="token">
+    <p>{{token}}</p>
+  </div>
 </nav>
 <router-outlet></router-outlet>

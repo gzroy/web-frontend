@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';  
 import { Product } from '../product';  
 import { ProductService } from '../product.service';  //productServic是用于读取数据的Service  
-  
+import { KeycloakService } from '../keycloak.service';      
 @Component({  
   selector: 'app-products',  
   templateUrl:'./products.component.html',  

@@ -6,8 +6,9 @@ import { AppComponent } from './app.component';
 import { ProductsComponent } from './products/products.component';  
 import { ProductDetailComponent } from'./product-detail/product-detail.component';  
 import { ProductService } from './product.service';
-import { AppRoutingModule } from './/app-routing.module';
-import { AddProductComponent } from './add-product/add-product.component';  
+import { AppRoutingModule } from './app-routing.module';
+import { AddProductComponent } from './add-product/add-product.component';
+import { KeycloakService } from './keycloak.service';
   
 @NgModule({  
   declarations: [  
@@ -23,7 +24,7 @@ import { AddProductComponent } from './add-product/add-product.component';
   ],  
   
   providers: [  
-    ProductService  
+    ProductService, KeycloakService
   ],  
   
   bootstrap: [AppComponent]  
