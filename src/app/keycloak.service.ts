@@ -28,30 +28,29 @@ export class KeycloakService {
     });
   }
   
-  static getToken(): Promise<string> {
+  static getToken(): Promise<string>{
     return new Promise<string>((resolve, reject) => {
       if (KeycloakService.auth.authz.token) {
         KeycloakService.auth.authz
           .updateToken(90) // refresh token if it will expire in 90 seconds or less
           .success(() => {
-            resolve(<string>KeycloakService.auth.authz.token);
+            return resolve(KeycloakService.auth.authz.token);
+             
           })
           .error(() => {
-            reject('Failed to refresh token');
+            return reject('Failed to refresh token');
           });
       } else {
-        reject('Not logged in');
+        return reject('Not logged in');
       }
+    //return KeycloakService.auth.authz.token;
     });
-  }  
-  
-  static hasAnyRole(roles: String[]): boolean {
-        for (let i = 0; i < roles.length; i++) {
-            if (KeycloakService.auth.authz.hasRealmRole(roles[i])) {
-                return true;
-            }
-        }
+  }
 
-        return false;
-    }
+  static async getToken1(){
+     let token1 = await KeycloakService.getToken();
+     console.log('bbbbb');
+     console.log(token1);
+     return token1;
+  }
 }

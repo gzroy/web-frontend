@@ -16,10 +16,11 @@ export class AppComponent implements OnInit{
   }
   
   public ngOnInit(): void {
-        KeycloakService.getToken().then(()=>{this.token=KeycloakService.auth.authz.token});
+        //KeycloakService.getToken().then(()=>{this.token=KeycloakService.auth.authz.token});
   }
   
   public isManager(): boolean {
-        return KeycloakService.hasAnyRole(['manager']);
+        //return KeycloakService.hasAnyRole(['manager']);
+        return false;
     }
 }

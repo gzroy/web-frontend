@@ -19,12 +19,6 @@ export class ProductService {
   constructor(private http:HttpClient) { }  
 
   getProducts(): Observable<Product[]> {  
-	KeycloakService.getToken().then(httpOptions.headers = httpOptions.headers.set('Authorization', 'Bearer '+ KeycloakService.auth.authz.token));
-	//const token = await KeycloakService.getToken();
-	//httpOptions.headers = httpOptions.headers.set('Authorization', 'Bearer ' + token);
-	//KeycloakService.getToken().then(()=>{this.token=KeycloakService.auth.authz.token}).catch(v=>{console.log(v)});
-    //httpOptions.headers = httpOptions.headers.set('Authorization', 'Bearer '+);
-	//console.log(httpOptions.headers);
     return this.http.get<Product[]>(this.productsUrl, httpOptions);
   }  
 
